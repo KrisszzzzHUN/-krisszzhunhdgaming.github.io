@@ -1,0 +1,813 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>KrisszzHUNHDGaming</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style id="css">/* Elrendezés: HD műsorújság. Balra igazított nyitó rész, a tesztkép színsávja az egyetlen merész elem, a sorozatok színkóddal. */
+:root{
+  --bg:#EDF0F8;--surface:#FFFFFF;--fg:#0E1636;--muted:#4F5B7D;--line:#C8D0E4;
+  --accent:#2340F5;--on-accent:#FFFFFF;--signal:#FFD21F;--on-signal:#0E1636;
+  --danger:#B3261E;--on-danger:#FFFFFF;
+  --note-bg:#0E1636;--note-fg:#EDF0F8;
+  --bar1:#C8C8C8;--bar2:#E6DC00;--bar3:#00C4CC;--bar4:#00B83C;--bar5:#C400C8;--bar6:#E32020;--bar7:#2340F5;
+  --c0:#2B3FB8;--c1:#B5530E;--c2:#3F7D20;--c3:#0E6C99;--c4:#5E3AA6;--c5:#A3263F;--c6:#8A6A00;--c7:#0F7A6B;--c8:#B0357D;--thumb-fg:#FFF6EA;
+  --f-display:"Archivo","Arial Black",Impact,system-ui,sans-serif;
+  --f-body:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0B1230;--surface:#141D45;--fg:#EAEEFB;--muted:#A0AAD0;--line:#2A3563;
+  --accent:#7D92FF;--on-accent:#0B1230;--danger:#FF8A80;--on-danger:#0B1230;--note-bg:#EAEEFB;--note-fg:#0B1230;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0B1230;--surface:#141D45;--fg:#EAEEFB;--muted:#A0AAD0;--line:#2A3563;
+  --accent:#7D92FF;--on-accent:#0B1230;--danger:#FF8A80;--on-danger:#0B1230;--note-bg:#EAEEFB;--note-fg:#0B1230;color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 1rem/1.6 var(--f-body);-webkit-font-smoothing:antialiased}
+.page{overflow-x:clip}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1180px;margin-left:auto;margin-right:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--f-mono);font-size:.8125rem}
+.label,.kicker{font:500 .75rem/1.3 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;margin:0 0 .75rem}
+.label{color:var(--muted)}
+.kicker{color:var(--accent)}
+h1,h2{margin:0;text-transform:uppercase;text-wrap:balance}
+h2{font:800 clamp(1.75rem,5vw,2.75rem)/1.05 var(--f-display);font-stretch:112%;letter-spacing:-.01em}
+h3{margin:0}
+
+/* Sorozatok színkódja: 0 = csatorna, 1-8 = sorozatok */
+.sc0{--tb:var(--c0)}.sc1{--tb:var(--c1)}.sc2{--tb:var(--c2)}.sc3{--tb:var(--c3)}.sc4{--tb:var(--c4)}
+.sc5{--tb:var(--c5)}.sc6{--tb:var(--c6)}.sc7{--tb:var(--c7)}.sc8{--tb:var(--c8)}
+.sw{display:inline-block;flex:none;width:.75rem;height:.75rem;background-color:var(--tb)}
+.tagm{display:inline-block;background:var(--note-bg);color:var(--note-fg);font:500 .6875rem/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;padding:.35rem .5rem}
+
+/* Fejléc */
+.note{background:var(--note-bg);color:var(--note-fg);font:500 .75rem/1.4 var(--f-mono)}
+.note .wrap{padding-block:.5rem}
+.bars{display:flex;height:14px}
+.bars i{flex:1}
+.bars i:nth-child(1){background:var(--bar1)}.bars i:nth-child(2){background:var(--bar2)}.bars i:nth-child(3){background:var(--bar3)}
+.bars i:nth-child(4){background:var(--bar4)}.bars i:nth-child(5){background:var(--bar5)}.bars i:nth-child(6){background:var(--bar6)}
+.bars i:nth-child(7){background:var(--bar7)}
+.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem 1rem;padding-block:1rem}
+.mark{font:900 .9375rem/1 var(--f-display);font-stretch:112%;color:var(--fg);text-decoration:none;overflow-wrap:anywhere}
+.nav{display:flex;gap:1.25rem}
+.nav a{font:500 .8125rem/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--fg);text-decoration:none;padding-block:.4rem;border-bottom:2px solid transparent}
+.nav a:hover{border-bottom-color:var(--accent)}
+
+/* Nyitó rész */
+.hero{padding-block:clamp(1.75rem,5vw,4rem)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(1.75rem,4vw,3.5rem);align-items:end}
+h1{font:900 clamp(2.6rem,7.4vw,5.5rem)/.94 var(--f-display);font-stretch:125%;letter-spacing:-.02em;margin:.25rem 0 1.25rem;overflow-wrap:anywhere}
+h1 .ln{display:block}
+.lead{font-size:1.125rem;max-width:34rem;color:var(--muted);margin:0}
+.cta{display:flex;flex-wrap:wrap;gap:.75rem;margin:1.75rem 0 0}
+.btn{appearance:none;display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.25rem;font:700 .9375rem/1.2 var(--f-body);text-decoration:none;color:var(--fg);border:2px solid var(--fg);border-radius:0;background:transparent;cursor:pointer;transition:background-color .15s,color .15s,filter .15s}
+.btn:hover{background:var(--fg);color:var(--bg)}
+.btn-p{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn-p:hover{background:var(--accent);color:var(--on-accent);filter:brightness(1.12)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn[disabled]:hover{background:transparent;color:var(--fg);filter:none}
+.btn-p[disabled]:hover{background:var(--accent);color:var(--on-accent)}
+
+/* Videókártyák */
+.gi,.si,.fi{min-width:0}
+.vid{display:block;color:inherit;text-decoration:none}
+.vid:focus-visible{outline-offset:6px}
+.thumb{position:relative;display:block;aspect-ratio:16/9;max-width:100%;overflow:hidden;background-color:var(--tb);color:var(--thumb-fg)}
+.thumb .tagm{position:absolute;left:0;top:0}
+.pc0{background-image:radial-gradient(rgba(255,255,255,.2) 1.5px,transparent 1.6px);background-size:14px 14px}
+.pc1{background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.11) 0 2px,transparent 2px 16px),repeating-linear-gradient(-45deg,rgba(255,255,255,.11) 0 2px,transparent 2px 16px)}
+.pc2{background-image:repeating-linear-gradient(105deg,rgba(0,0,0,.16) 0 10px,transparent 10px 28px)}
+.pc3{background-image:linear-gradient(rgba(255,255,255,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.16) 1px,transparent 1px);background-size:18px 18px}
+.pc4{background-image:repeating-linear-gradient(135deg,rgba(0,0,0,.2) 0 12px,transparent 12px 24px)}
+.pc5{background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.13) 0 3px,transparent 3px 20px)}
+.pc6{background-image:repeating-linear-gradient(60deg,rgba(0,0,0,.14) 0 8px,transparent 8px 22px)}
+.pc7{background-image:repeating-linear-gradient(0deg,rgba(0,0,0,.15) 0 4px,transparent 4px 16px)}
+.pc8{background-image:conic-gradient(rgba(0,0,0,.13) 25%,transparent 0 50%,rgba(0,0,0,.13) 0 75%,transparent 0);background-size:28px 28px}
+.ep{position:absolute;left:.85rem;bottom:.55rem;font:900 clamp(2.25rem,6vw,3.25rem)/1 var(--f-display);font-stretch:125%;letter-spacing:-.03em}
+.ep small{display:block;font:500 .6875rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.3rem}
+.ep.ep-t{font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:-.01em;text-transform:uppercase}
+.vid-big .ep{font-size:clamp(3.5rem,10vw,6rem)}
+.vid-big .ep.ep-t{font-size:clamp(2.4rem,7vw,4.25rem)}
+.dur{position:absolute;right:.6rem;bottom:.6rem;background:rgba(8,12,30,.78);color:#fff;font:500 .75rem/1 var(--f-mono);padding:.3rem .45rem}
+.play{position:absolute;right:.85rem;top:.85rem;width:2.25rem;height:2.25rem;border:2px solid currentColor;border-radius:50%;display:grid;place-items:center;opacity:.8;transition:opacity .15s,transform .15s}
+.play::before{content:"";border-left:.6rem solid currentColor;border-top:.38rem solid transparent;border-bottom:.38rem solid transparent;margin-left:.15rem}
+.vid:hover .play,.vid:focus-visible .play{opacity:1;transform:scale(1.1)}
+.new{position:absolute;left:0;top:0;background:var(--signal);color:var(--on-signal);font:700 .6875rem/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;padding:.4rem .6rem}
+.vmeta{display:block;padding-top:.75rem}
+.vtag{display:flex;align-items:center;gap:.4rem;font:500 .75rem/1.4 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.vtitle{display:block;font:700 1.125rem/1.25 var(--f-body);margin:.25rem 0}
+.vdate{display:block;font:400 .8125rem/1.4 var(--f-mono);color:var(--muted)}
+.vid:hover .vtitle,.vid:focus-visible .vtitle{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.2em}
+.vid-big .vtitle{font:800 clamp(1.4rem,3vw,1.9rem)/1.15 var(--f-display);font-stretch:112%}
+
+/* Sorozatok sávja */
+.sched{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sched-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.5rem 1.5rem;padding-top:1.25rem}
+.sched .label{margin:0}
+.hint{margin:0;font:500 .8125rem/1.4 var(--f-mono);color:var(--muted)}
+.slots{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 1.5rem;margin-top:1.25rem;padding-bottom:1.5rem}
+.si{align-self:start}
+.slot{appearance:none;display:block;width:100%;margin:0;padding:0;border:0;border-radius:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.slot::before{content:"";display:block;height:4px;background-color:var(--tb);margin-bottom:.9rem}
+.cnt{display:block;font:500 .75rem/1.3 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.sname-big{display:block;margin-top:.35rem;font:800 1.25rem/1.15 var(--f-display);font-stretch:112%;text-transform:uppercase;overflow-wrap:anywhere;transition:color .15s}
+.sub{display:block;color:var(--muted);font-size:.875rem;margin:.3rem 0 0}
+.slot:hover .sname-big{color:var(--accent)}
+
+/* Szekciók */
+.sec{padding-block:clamp(2.5rem,6vw,4.5rem)}
+.sec-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:1.25rem 2rem;margin-bottom:1.75rem}
+.sec-head .kicker{margin-bottom:.5rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.chip{appearance:none;display:inline-flex;align-items:center;gap:.5rem;font:600 .875rem/1.2 var(--f-body);padding:.5rem .85rem;border:1.5px solid var(--line);border-radius:0;background:transparent;color:var(--fg);cursor:pointer;transition:background-color .15s,color .15s,border-color .15s}
+.chip:hover{border-color:var(--accent)}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.chip .n{font:400 .75rem/1 var(--f-mono);opacity:.75}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem 1.5rem}
+.empty{grid-column:1/-1;margin:0;color:var(--muted)}
+.more{margin:2rem 0 0}
+
+.split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:start}
+.side .lead{font-size:1rem;margin-top:1rem}
+.news-list{list-style:none;margin:0;padding:0}
+.news-item{display:grid;grid-template-columns:10.25rem minmax(0,1fr);gap:1rem;padding:1.25rem 0}
+.news-item:first-child{padding-top:0}
+.news-item+.news-item{border-top:1px solid var(--line)}
+.ndate{margin:0;font:400 .8125rem/1.6 var(--f-mono);color:var(--muted)}
+.ntag{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem .75rem;margin:0 0 .5rem;font-size:.875rem;font-weight:600}
+.news-item h3{font:700 1.25rem/1.25 var(--f-body);text-wrap:balance}
+.nt{margin:.4rem 0 0;color:var(--muted);max-width:40rem}
+
+/* GYIK */
+.fi{border-top:1px solid var(--line)}
+.fi:last-child{border-bottom:1px solid var(--line)}
+details.faq summary{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;padding:1.1rem 0;cursor:pointer;list-style:none;font:700 1.0625rem/1.35 var(--f-body)}
+details.faq summary>span{min-width:0}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::after{content:"+";flex:none;font:500 1.5rem/1 var(--f-mono);color:var(--accent)}
+details.faq[open] summary::after{content:"\2212"}
+details.faq p{margin:0 0 1.25rem;max-width:42rem;color:var(--muted)}
+details.faq .tagm{margin-left:.4rem;vertical-align:.1em}
+
+/* Lábléc */
+.foot{background:var(--surface);border-top:1px solid var(--line);padding-block:1.75rem}
+.foot p{margin:0}
+.foot-in{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem 1.5rem}
+
+/* Szerkesztő: csak azoknak jelenik meg, akik menthetik az oldalt */
+.edbar{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.6rem}
+.fi .edbar{margin:0 0 1rem}
+.mini{appearance:none;font:600 .75rem/1 var(--f-mono);letter-spacing:.04em;padding:.5rem .65rem;border:1.5px solid var(--line);border-radius:0;background:var(--surface);color:var(--fg);cursor:pointer}
+.mini:hover{border-color:var(--accent)}
+.mini.del{color:var(--danger)}
+.mini.del:hover{border-color:var(--danger)}
+.mini[data-armed="1"]{background:var(--danger);border-color:var(--danger);color:var(--on-danger)}
+.addbtn{appearance:none;display:inline-flex;align-items:center;gap:.4rem;font:700 .875rem/1.2 var(--f-body);padding:.7rem 1rem;border:2px dashed var(--accent);border-radius:0;background:transparent;color:var(--accent);cursor:pointer;margin:0 0 1rem}
+.addbtn:hover{background:var(--accent);color:var(--on-accent);border-style:solid}
+.fab{position:fixed;z-index:30;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));box-shadow:0 6px 24px rgba(8,12,30,.35)}
+.edit-bar{position:fixed;z-index:30;left:0;right:0;bottom:0;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem 1rem;background:var(--surface);color:var(--fg);border-top:2px solid var(--fg);padding:.75rem max(16px,env(safe-area-inset-right,0px)) calc(.75rem + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.bar-msg{margin:0;min-width:0;font:500 .8125rem/1.4 var(--f-mono)}
+.bar-btns{display:flex;flex-wrap:wrap;gap:.5rem}
+.bar-btns .btn{padding:.6rem 1rem;font-size:.875rem}
+.page.editing{padding-bottom:8rem}
+
+.modal{position:fixed;inset:0;z-index:50;display:flex;justify-content:center;background:rgba(8,12,30,.62);overflow-y:auto;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.dlg{width:100%;max-width:34rem;margin-block:auto;background:var(--surface);color:var(--fg);border:2px solid var(--fg);padding:1.25rem}
+.dlg-t{font:800 1.25rem/1.2 var(--f-display);font-stretch:112%;text-transform:uppercase;margin:0 0 1.25rem}
+.fld{margin:0 0 1rem;min-width:0}
+fieldset.fld{border:0;padding:0}
+.fl{display:block;padding:0;font:600 .875rem/1.3 var(--f-body);margin:0 0 .35rem}
+.req{color:var(--danger)}
+.fld input[type=text],.fld input[type=url],.fld input[type=number],.fld input[type=date],.fld select,.fld textarea{display:block;width:100%;font:400 1rem/1.4 var(--f-body);padding:.6rem .7rem;border:1.5px solid var(--fg);border-radius:0;background:var(--bg);color:var(--fg)}
+.fld textarea{min-height:6.5rem;resize:vertical}
+.fld input:focus-visible,.fld select:focus-visible,.fld textarea:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.fh{margin:.3rem 0 0;font-size:.8125rem;color:var(--muted)}
+.ck{display:flex;align-items:center;gap:.6rem;font:600 .9375rem/1.3 var(--f-body);cursor:pointer}
+.ck input{width:1.15rem;height:1.15rem;accent-color:var(--accent)}
+.err{min-height:1.4em;margin:-.25rem 0 .5rem;color:var(--danger);font:600 .875rem/1.4 var(--f-body)}
+.dlg-btns{display:flex;flex-wrap:wrap;gap:.6rem}
+.cps{display:flex;flex-wrap:wrap;gap:.6rem}
+.cp{position:relative;display:block;width:2.25rem;height:2.25rem;cursor:pointer}
+.cp input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.cp span{display:block;width:100%;height:100%;background-color:var(--tb)}
+.cp input:checked+span{outline:3px solid var(--fg);outline-offset:2px}
+.cp input:focus-visible+span{outline:3px solid var(--accent);outline-offset:2px}
+
+@media (max-width:900px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero-grid,.split{grid-template-columns:minmax(0,1fr)}
+  h1{font-size:clamp(3rem,15vw,7rem)}
+  .slots{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem}
+}
+@media (max-width:560px){
+  .grid{grid-template-columns:minmax(0,1fr)}
+  .news-item{grid-template-columns:minmax(0,1fr);gap:.35rem}
+  .nav{gap:.9rem}
+  .slots{gap:1.25rem 1rem}
+  .edit-bar{gap:.35rem .75rem;padding-top:.55rem}
+  .bar-msg{flex:1 1 100%}
+  .bar-btns{width:100%;gap:.4rem}
+  .bar-btns .btn{flex:1 1 auto;justify-content:center;padding:.5rem .6rem;font-size:.8125rem}
+  .page.editing{padding-bottom:10rem}
+  .dlg{padding:1rem}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important}
+}
+</style><div id="root"></div><script type="application/json" id="site-data">{"v":1,"channelUrl":"https://www.youtube.com/channel/UCVL2_80NWDbFPYNtZsZHrSg","series":[{"id":"snf","name":"Steam Next Fest","short":"Steam Next Fest","kind":"Steam Next Fest demók kiprobálása","c":3},{"id":"tr","name":"Tomb Raider 2013 sorozat végigjátszás","short":"Tomb Raider 2013","kind":"Reboot végigjátszás","c":2},{"id":"pop","name":"Prince of Persia The Two Thrones","short":"Prince of Persia TTT","kind":"Trilógia végigjátszás","c":1},{"id":"sqxavp3","name":"Detroit: Become Human végigjátszás","short":"Detroit: Become Human","kind":"Végigjátszás","c":3},{"id":"s1evez3","name":"Portal végigjátszás","short":"Portal végigjátszás","kind":"Portal végigjátszás","c":3},{"id":"s2n3n27","name":"Horrorest","short":"Horrorest","kind":"Horror játékokat játszok","c":5},{"id":"shibu7s","name":"Marvel's Spider-Man Remastered","short":"Marvel's Spider-Man 2018","kind":"Marvel's Spider-Man Remastered végigjáts","c":6},{"id":"slmz0ci","name":"Mass Effect: Andromeda","short":"Mass Effect: Andromeda","kind":"Mass Effect: Andromeda végigjátszás","c":3},{"id":"sf08m18","name":"Darksiders Warmastered végigjátszás","short":"Darksiders","kind":"Darksiders Warmastered végigjátszás","c":7},{"id":"s8os2vd","name":"Rise of The Tomb Raider végigjátszás","short":"Rise of The Tomb Raider","kind":"Végigjátszás","c":7},{"id":"sr37krb","name":"Tomb Raider Legend végigjátszás","short":"Tomb Raider Legend","kind":"TRL végigjátszás Normal fokozat","c":4},{"id":"sm6yo0o","name":"Tomb Raider Underworld végigjátszás","short":"Tomb Raider Underworld","kind":"TRU végigjátszás","c":2},{"id":"stb3zgy","name":"Prince of Persia: The Forgotten Sands végigjátszás","short":"Prince of Persia: TFS","kind":"Végigjátszás","c":6},{"id":"s5h21cl","name":"Portal 2 végigjátszás","short":"Portal 2","kind":"Végigjátszás magyar szinkronnal","c":3},{"id":"sam19om","name":"Batman Arkham Asylum végigjátszás","short":"Batman Arkham Asylum","kind":"Végigjátszás (Batkrisz)","c":8},{"id":"s5hlrxv","name":"Batman Arkham City végigjátszás (BatKrisz)","short":"Batman Arkham City","kind":"Végigjátszás (Batkrisz)","c":1},{"id":"sakcmwv","name":"Half Life 2 végigjátszás","short":"Half Life 2 végigjátszás","kind":"Half Life 2 végigjátszás","c":2}],"videos":[{"id":"v4gvnih","series":"sakcmwv","title":"Half Life 2 Magyar szinkron végigjátszás 3. rész - Siklócsónakkal tovább LIVE","url":"https://www.youtube.com/watch?v=jY5bb_UqL1Y","ep":3,"date":"2026-11-04","dur":"1:57:59"},{"id":"vaw7fac","series":"sakcmwv","title":"Half Life 2 Magyar szinkron végigjátszás 2. rész - Menekülés","url":"https://www.youtube.com/watch?v=BppkT7y6tYs","ep":2,"date":"2026-11-04","dur":"1:08:01"},{"id":"vt9gqlu","series":"sakcmwv","title":"Half Life 2 Magyar szinkron végigjátszás 1. rész - A 17-es város","url":"https://www.youtube.com/watch?v=h45e1Zp0fSk","ep":1,"date":"2026-11-04","dur":"28:10"},{"id":"vt33gdv","series":"s5hlrxv","title":"Batman Arkham City végigjátszás 7. rész - Talán megvan az ellenszer LIVE","url":"https://www.youtube.com/watch?v=1Zbc9iX2gMo&list=PLTdsLsdrQ5bzQpATV-NnNWdLd75m5Xmty&index=7","ep":7,"date":"2026-11-04","dur":"2:16:34"},{"id":"v35rwd7","series":"s5hlrxv","title":"Batman Arkham City végigjátszás 6. rész - Ra's al Ghul","url":"https://www.youtube.com/watch?v=fPjAlxlfRUs&list=PLTdsLsdrQ5bzQpATV-NnNWdLd75m5Xmty&index=6","ep":6,"date":"2026-11-04","dur":"34:46"},{"id":"vbe5qbj","series":"s5hlrxv","title":"Batman Arkham City végigjátszás 5. rész - Bejutás az orgyilkosok ligajába","url":"https://www.youtube.com/watch?v=m_fMjbMSV1g&list=PLTdsLsdrQ5bzQpATV-NnNWdLd75m5Xmty&index=5","ep":5,"date":"2026-11-04","dur":"35:28"},{"id":"v47uuob","series":"s5hlrxv","title":"Batman Arkham City végigjátszás 4. rész - Pingvin és Mr. Freeze","url":"https://www.youtube.com/watch?v=9vO_TIAc0RA&list=PLTdsLsdrQ5bzQpATV-NnNWdLd75m5Xmty&index=4","ep":4,"date":"2026-11-04","dur":"40:05"},{"id":"v6yfqy6","series":"s5hlrxv","title":"Batman Arkham City végigjátszás 3. rész - Az ellenszer nyomán","url":"https://www.youtube.com/watch?v=4lQCK8XS8LQ&list=PLTdsLsdrQ5bzQpATV-NnNWdLd75m5Xmty&index=3","ep":3,"date":"2026-11-04","dur":"1:00:15"},{"id":"v2y1x80","series":"s5hlrxv","title":"Batman Arkham City végigjátszás 2. rész - A mérgezés","url":"https://www.youtube.com/watch?v=4ETyT1XezHc&list=PLTdsLsdrQ5bzQpATV-NnNWdLd75m5Xmty&index=2","ep":2,"date":"2026-11-04","dur":"48:38"},{"id":"vpzmdlp","series":"s5hlrxv","title":"Batman Arkham City végigjátszás 1. rész - A sötét lovag újra akcióban","url":"https://www.youtube.com/watch?v=3fbIpfwAPqg&list=PLTdsLsdrQ5bzQpATV-NnNWdLd75m5Xmty&index=1","ep":1,"date":"2026-11-04","dur":"38:04"},{"id":"vpbph0i","series":"sam19om","title":"BatKrisz #1 Batman Arkham Asylum #10 VÉGE","url":"https://www.youtube.com/watch?v=ibPDDSQCn9E&list=PLTdsLsdrQ5byPKGB9Fr_H6AklZ-PK6fi-&index=10","ep":10,"date":"2026-11-04","dur":"1:09:22"},{"id":"vlnpeiy","series":"sam19om","title":"BatKrisz #1 Batman Arkham Asylum #9","url":"https://www.youtube.com/watch?v=IWB5FVsmO5g&list=PLTdsLsdrQ5byPKGB9Fr_H6AklZ-PK6fi-&index=9","ep":9,"date":"2026-11-04","dur":"41:56"},{"id":"vus2rwf","series":"sam19om","title":"BatKrisz #1 Batman Arkham Asylum #8","url":"https://www.youtube.com/watch?v=AooNTjZ7DzA&list=PLTdsLsdrQ5byPKGB9Fr_H6AklZ-PK6fi-&index=8","ep":8,"date":"2026-11-04","dur":"51:38"},{"id":"voqlvzx","series":"sam19om","title":"BatKrisz #1 Batman Arkham Asylum #7","url":"https://www.youtube.com/watch?v=f19kUgZz9aQ&list=PLTdsLsdrQ5byPKGB9Fr_H6AklZ-PK6fi-&index=7","ep":7,"date":"2026-11-04","dur":"32:11"},{"id":"v6hkb9g","series":"sam19om","title":"BatKrisz #1 Batman Arkham Asylum #6","url":"https://www.youtube.com/watch?v=ewnDxbHnxOU&list=PLTdsLsdrQ5byPKGB9Fr_H6AklZ-PK6fi-&index=6","ep":6,"date":"2026-11-04","dur":"32:29"},{"id":"vx81d6y","series":"sam19om","title":"BatKrisz #1 Batman Arkham Asylum #5","url":"https://www.youtube.com/watch?v=6AgkId6hQUA&list=PLTdsLsdrQ5byPKGB9Fr_H6AklZ-PK6fi-&index=5","ep":5,"date":"2026-11-04","dur":"32:09"},{"id":"vtf01lv","series":"sam19om","title":"BatKrisz #1 Batman Arkham Asylum #4","url":"https://www.youtube.com/watch?v=ZkI2QVrqSyA&list=PLTdsLsdrQ5byPKGB9Fr_H6AklZ-PK6fi-&index=4","ep":4,"date":"2026-11-04","dur":"26:33"},{"id":"v4xdki4","series":"sam19om","title":"BatKrisz #1 Batman Arkham Asylum #3","url":"https://www.youtube.com/watch?v=NvKFQ_F49ls&list=PLTdsLsdrQ5byPKGB9Fr_H6AklZ-PK6fi-&index=3","ep":3,"date":"2026-11-04","dur":"39:02"},{"id":"vvlkmk5","series":"sam19om","title":"BatKrisz #1 Batman Arkham Asylum #2","url":"https://www.youtube.com/watch?v=-9SAEOsnGQk&list=PLTdsLsdrQ5byPKGB9Fr_H6AklZ-PK6fi-&index=2","ep":2,"date":"2026-11-04","dur":"38:07"},{"id":"vt67qrk","series":"sam19om","title":"BatKrisz #1 Batman Arkham Asylum #1","url":"https://www.youtube.com/watch?v=q1HS0m2Lpkc&list=PLTdsLsdrQ5byPKGB9Fr_H6AklZ-PK6fi-&index=1","ep":1,"date":"2026-11-04","dur":"32:08"},{"id":"v7rhha1","series":"s5h21cl","title":"Portal 2 Magyar szinkron végigjátszás 3. rész - Wheatley ezért még megfizets","url":"https://www.youtube.com/watch?v=B32Zt1dY0KE&t=22s","ep":3,"date":"2026-11-04","dur":"3:17:58"},{"id":"vog14ij","series":"s5h21cl","title":"Portal 2 Magyar szinkron végigjátszás 2. rész - Wheatley törjünk ki Glados szörnyű tesztjei alul","url":"https://www.youtube.com/watch?v=Qt4ieGcz4-I","ep":2,"date":"2026-11-04","dur":"2:38:30"},{"id":"v49tgk5","series":"s5h21cl","title":"Portal 2 Magyar szinkron végigjátszás 1. rész - Glados, még élsz?","url":"https://www.youtube.com/watch?v=BnmLX3uZZ00","ep":1,"date":"2026-11-04","dur":"1:59:15"},{"id":"vvinqta","series":"stb3zgy","title":"Prince of Persia: The Forgotten Sands végigjátszás 2. rész - A fagyasztás ereje","url":"https://www.youtube.com/watch?v=iEx_VcXWcuk","ep":2,"date":"2026-11-04","dur":"1:24:55"},{"id":"vru0vjc","series":"stb3zgy","title":"Prince of Persia: The Forgotten Sands végigjátszás 1. rész","url":"https://www.youtube.com/watch?v=QIpfwuS73wQ","ep":1,"date":"2026-11-04","dur":"1:52:41"},{"id":"vty28ef","series":"sm6yo0o","title":"Retro: Tomb Raider: Underworld #6- Avalon VÉGE","url":"https://www.youtube.com/watch?v=Hk8BHQdsnfc","ep":6,"date":"2026-11-04","dur":"1:59:35"},{"id":"vnnm8k7","series":"sm6yo0o","title":"Retro: Tomb Raider: Underworld #5 - Szerezzük meg Thor pörölyét","url":"https://www.youtube.com/watch?v=nCfT5Ee0hTQ","ep":5,"date":"2026-11-04","dur":"1:43:25"},{"id":"v51rmoj","series":"sm6yo0o","title":"Retro: Tomb Raider: Underworld #4 - Motorozás Mexikóban","url":"https://www.youtube.com/watch?v=kAU5KPCxZYw","ep":4,"date":"2026-11-04","dur":"3:22:05"},{"id":"vp2u9v5","series":"sm6yo0o","title":"Retro: Tomb Raider: Underworld #3 - Croft birtoki kriptában","url":"https://www.youtube.com/watch?v=mBLJqlLgXQk","ep":3,"date":"2026-11-04","dur":"1:00:55"},{"id":"valr5i7","series":"sm6yo0o","title":"Retro: Tomb Raider: Underworld #2 - Dzsungel -ekben","url":"https://www.youtube.com/watch?v=QDRHovx7x2M","ep":2,"date":"2026-11-04","dur":"2:00:15"},{"id":"vn32y78","series":"sm6yo0o","title":"Retro: Tomb Raider: Underworld #1 - A vízi világ","url":"https://www.youtube.com/watch?v=sfez_0uE1es","ep":1,"date":"2026-11-04","dur":"1:34:55"},{"id":"varsuss","series":"sr37krb","title":"Retro: Tomb Raider: Legend #7 - Nepál + Finálé VÉGE","url":"https://www.youtube.com/watch?v=4uPBwp537G8","ep":7,"date":"2026-11-04","dur":"52:34"},{"id":"vi53459","series":"sr37krb","title":"Retro: Tomb Raider: Legend #6 - Anglia","url":"https://www.youtube.com/watch?v=AxiuEMP8Rec","ep":6,"date":"2026-11-04","dur":"1:51:03"},{"id":"vs1tjyt","series":"sr37krb","title":"Retro: Tomb Raider: Legend #5 - Kazahsztán","url":"https://www.youtube.com/watch?v=zFf01lqJt8s","ep":5,"date":"2026-11-04","dur":"1:41:07"},{"id":"vxjdn7s","series":"sr37krb","title":"Retro: Tomb Raider: Legend #4 - Nyugat-Afrika","url":"https://www.youtube.com/watch?v=R1L56m6HNew","ep":4,"date":"2026-11-04","dur":"1:10:31"},{"id":"vaj8uz5","series":"sr37krb","title":"Retro: Tomb Raider: Legend #3 - Japán","url":"https://www.youtube.com/watch?v=aMYLafWHhJo","ep":3,"date":"2026-11-04","dur":"48:15"},{"id":"vf4dtyb","series":"sr37krb","title":"Retro: Tomb Raider: Legend #2- Peru","url":"https://www.youtube.com/watch?v=t2XDWIaRZu8","ep":2,"date":"2026-11-04","dur":"57:14"},{"id":"vhyj2q3","series":"sr37krb","title":"Retro: Tomb Raider: Legend #1- Bolivia","url":"https://www.youtube.com/watch?v=oSOGPv41kmk","ep":1,"date":"2026-11-04","dur":"44:21"},{"id":"vzkm0vi","series":"snf","title":"Steam Játékfesztivál 2025: Rise of Rebellion - Gagyi soulslike","url":"https://www.youtube.com/watch?v=2_9JgQyX1NQ","ep":8,"date":"2026-11-03","dur":"31:40"},{"id":"v1l060v","series":"s8os2vd","title":"Rise of the Tomb Raider #8 - A rejtett város VÉGE LIVE","url":"https://www.youtube.com/watch?v=7P-SxlFOJJA","ep":8,"date":"2026-11-03","dur":"2:01:25"},{"id":"vmcl81v","series":"s8os2vd","title":"Rise of the Tomb Raider #7 - Mentsük meg Jonaht LIVE","url":"https://www.youtube.com/watch?v=xKYcsNYSfyw&t=5369s","ep":7,"date":"2026-11-03","dur":"2:16:55"},{"id":"vsb8jlp","series":"s8os2vd","title":"Rise of the Tomb Raider #6 - Az Atlasz LIVE","url":"https://www.youtube.com/watch?v=7pA0PfIxhq0&t=6489s","ep":6,"date":"2026-11-03","dur":"2:32:35"},{"id":"v085ruv","series":"s8os2vd","title":"Rise of the Tomb Raider #5 - Jacob emberei LIVE","url":"https://www.youtube.com/watch?v=jqqOVbUgs4E&t=7677s","ep":5,"date":"2026-11-03","dur":"2:13:40"},{"id":"v2dvklh","series":"s8os2vd","title":"Rise of the Tomb Raider #4 - Út a hidegen átt LIVE","url":"https://www.youtube.com/watch?v=3wQMeLsbZJY","ep":4,"date":"2026-11-03","dur":"2:04:31"},{"id":"v2gibzz","series":"s8os2vd","title":"Rise of the Tomb Raider #3 - Szovjet létesítmény","url":"https://www.youtube.com/watch?v=j1bsYuR8pIU","ep":3,"date":"2026-11-03","dur":"42:31"},{"id":"vblqsrj","series":"s8os2vd","title":"Rise of the Tomb Raider #2 - Medve, trinity, Sofia és jégbarlang","url":"https://www.youtube.com/watch?v=pFzLIK7zyeU","ep":2,"date":"2026-11-03","dur":"42:25"},{"id":"vy5h9og","series":"s8os2vd","title":"Rise of the Tomb Raider #1 - A proféta sírja","url":"https://www.youtube.com/watch?v=KFnH238OyTc","ep":1,"date":"2026-11-03","dur":"45:44"},{"id":"vphtxup","series":"sf08m18","title":"Darksiders Warmastered Edition Magyar felirattal #9 - A kard VÉGE LIVE","url":"https://www.youtube.com/watch?v=JIg5NnH8Hhg","ep":9,"date":"2026-11-03","dur":"2:36:05"},{"id":"vyczakn","series":"sf08m18","title":"Darksiders Warmastered Edition Magyar felirattal #8 - A fekete trón LIVE","url":"https://www.youtube.com/watch?v=vh3mmA1BfDQ","ep":8,"date":"2026-11-03","dur":"5:17:28"},{"id":"vp7kdwm","series":"sf08m18","title":"Darksiders Warmastered Edition Magyar felirattal #7 - Silitha területe LIVE","url":"https://www.youtube.com/watch?v=Le9O7BRied0","ep":7,"date":"2026-11-03","dur":"2:33:30"},{"id":"v4gxvs1","series":"sf08m18","title":"Darksiders Warmastered Edition Magyar felirattal #6 - Sivatagi szörny LIVE","url":"https://www.youtube.com/watch?v=VP0vxLQB5NY","ep":6,"date":"2026-11-03","dur":"2:35:41"},{"id":"v1xazfg","series":"sf08m18","title":"Darksiders Warmastered Edition Magyar felirattal #5 - Griever te jösz LIVE","url":"https://www.youtube.com/watch?v=5SNPzy3abXY","ep":5,"date":"2026-11-03","dur":"2:19:24"},{"id":"vc78m5j","series":"sf08m18","title":"Darksiders Warmastered Edition Magyar felirattal #4 - Irány a 2. Bosshoz vezető út LIVE","url":"https://www.youtube.com/watch?v=wLfvYDmZjjw","ep":4,"date":"2026-11-03","dur":"1:44:00"},{"id":"vn1tu1j","series":"sf08m18","title":"Darksiders Warmastered Edition Magyar felirattal #3 - Tiamat te jösz LIVE","url":"https://www.youtube.com/watch?v=Ip85nXwpQco","ep":3,"date":"2026-11-03","dur":"1:44:41"},{"id":"vy7d9up","series":"sf08m18","title":"Darksiders Warmastered Edition Magyar felirattal #2 - Irány az első bosshozs LIVE","url":"https://www.youtube.com/watch?v=aCEq-PKUkPw","ep":2,"date":"2026-11-03","dur":"1:27:34"},{"id":"v4azapl","series":"sf08m18","title":"Darksiders Warmastered Edition Magyar felirattal #1 - War az egyik lovas LIVE","url":"https://www.youtube.com/watch?v=1fWO98yPT7E","ep":1,"date":"2026-11-03","dur":"1:22:51"},{"id":"v0nf1jg","series":"slmz0ci","title":"Mass Effect: Andromeda végigjátszás 2. rész - Utazgatás bolygók között","url":"https://www.youtube.com/watch?v=FC6SuPlzYHQ","ep":2,"date":"2026-11-03","dur":"1:39:55"},{"id":"v4kgz7c","series":"slmz0ci","title":"Mass Effect: Andromeda végigjátszás 1. rész -Az új útkereső","url":"https://www.youtube.com/watch?v=KIURomxz1VQ","ep":1,"date":"2026-11-03","dur":"1:26:39"},{"id":"vjotr24","series":"shibu7s","title":"Marvel's Spider-Man Remastered végigjátszás 2. rész - Fisk búvúhelye","url":"https://www.youtube.com/watch?v=j-tlEq6NPAk&t=9123s","ep":2,"date":"2026-11-03","dur":"2:37:10"},{"id":"vsnelne","series":"shibu7s","title":"Marvel's Spider-Man Remastered végigjátszás 1. rész - Irány a hálóhintázás","url":"https://www.youtube.com/watch?v=yxhwmR-3AOQ","ep":1,"date":"2026-11-03","dur":"1:55:13"},{"id":"v1w8dux","series":"s2n3n27","title":"Horror est I Parasocial I végigjátszás 2. rész VÉGE","url":"https://www.youtube.com/watch?v=izHOkSHUINk","ep":9,"date":"2026-11-03","dur":"1:02:08"},{"id":"v4o6rpi","series":"s2n3n27","title":"Horror est I Parasocial I végigjátszás 1. rész","url":"https://www.youtube.com/watch?v=iW-TGQfYt_k","ep":8,"date":"2026-11-03","dur":"1:11:09"},{"id":"vpgl915","series":"s2n3n27","title":"Horror est I The Kidnap I végigjátszás 2. rész VÉGE","url":"https://www.youtube.com/watch?v=CmsXw8PfNSQ","ep":7,"date":"2026-11-03","dur":"1:13:59"},{"id":"vcj6tno","series":"s2n3n27","title":"Horror est I The Kidnap I végigjátszás 1. rész","url":"https://www.youtube.com/watch?v=3Ia75nFye9w","ep":6,"date":"2026-11-03","dur":"1:22:57"},{"id":"v39z2qd","series":"s2n3n27","title":"Horror est I The Convenience Store I Teljes végigjátszás","url":"https://www.youtube.com/watch?v=fRQhjpP_H9o","ep":5,"date":"2026-11-03","dur":"2:05:04"},{"id":"vvb24a1","series":"s2n3n27","title":"Horror est I When The Devil Takes Hold I végigjátszás 2. rész VÉGE","url":"https://www.youtube.com/watch?v=6vAe8FbsVg4","ep":4,"date":"2026-11-03","dur":"1:14:26"},{"id":"vczfu0u","series":"s2n3n27","title":"Horror est I When The Devil Takes Hold I végigjátszás 1. rész","url":"https://www.youtube.com/watch?v=aukf0RAEVIU","ep":3,"date":"2026-11-03","dur":"43:39"},{"id":"vkttry1","series":"s2n3n27","title":"Horror est I The Karaoke I Teljes végigjátszás","url":"https://www.youtube.com/watch?v=n7dgEx7a408","ep":2,"date":"2026-11-03","dur":"1:05:42"},{"id":"vwvlku4","series":"s2n3n27","title":"Horrorest: Cronos The New Dawn próbateszt","url":"https://www.youtube.com/watch?v=AU9Cvogaz5A","ep":1,"date":"2026-11-03","dur":"29:53"},{"id":"vc7upxf","series":"snf","title":"Steam Játékfesztivál 2025 október: Bloodface - RPG Soulslike (trashlike)","url":"https://www.youtube.com/watch?v=8p3oODjY7Uw","ep":7,"date":"2026-11-03","dur":"16:30"},{"id":"v7nbet2","series":"snf","title":"Steam Játékfesztivál 2025 október: Backrooms Anomaly - Backroomsos anomália keresős","ep":6,"date":"2026-11-03","dur":"20:49"},{"id":"vb2buno","series":"snf","title":"Steam Játékfesztivál 2025 október: Anima Gate of Memories: I&II Remaster - Hack & Slash","url":"https://www.youtube.com/watch?v=NFUfP7aoKMo","ep":5,"date":"2026-11-03","dur":"35:52"},{"id":"vhlzmcm","series":"snf","title":"Steam Next Fest 2026 - DragonSword : Awakening (Koreai JRPG) (VOD)","url":"https://www.youtube.com/watch?v=9m3hnPc8Twc","ep":4,"date":"2026-11-03","dur":"46:39"},{"id":"vuwp2iq","series":"snf","title":"Steam Next Fest 2026 - Duskfade (Akció, Platformer) (VOD)","url":"https://www.youtube.com/watch?v=VbL6xQRXbZU&t=2s","ep":3,"date":"2026-11-03","dur":"45:14"},{"id":"vgfz3w9","series":"snf","title":"Steam Next Fest 2026 - 3. - Helrift","url":"https://www.youtube.com/watch?v=vywWIb5cqO4","ep":2,"date":"2026-11-03","dur":"33:08"},{"id":"vs02r6g","series":"snf","title":"Steam Next Fest 2026 - 3. - GRIP 2","url":"https://www.youtube.com/watch?v=JnWl9j9EBo8&t=1s","ep":1,"date":"2026-11-03","dur":"19:49"},{"id":"vdjb56j","series":"tr","title":"Tomb Raider (2013) #9 - Nyírjuk ki Mathias és Himikót LIVE VÉGE","url":"https://www.youtube.com/watch?v=fScj4n4cwyI&list=PLTdsLsdrQ5bwDJntH0LqgYmXYMX8Jp_Eu&index=7","ep":9,"date":"2026-11-03","dur":"1:07:25"},{"id":"v9s8q2v","series":"tr","title":"Tomb Raider (2013) #8 - Tervezzük meg a kijutást a szigetröl LIVE","url":"https://www.youtube.com/watch?v=WfcoseQZqwY&list=PLTdsLsdrQ5bwDJntH0LqgYmXYMX8Jp_Eu&index=8","ep":8,"date":"2026-11-03","dur":"2:07:32"},{"id":"vlxxum0","series":"tr","title":"Tomb Raider (2013) #7 - Menekülés a palotából","url":"https://www.youtube.com/watch?v=aucJZBdE6Vc&list=PLTdsLsdrQ5bwDJntH0LqgYmXYMX8Jp_Eu&index=7","ep":7,"date":"2026-11-03","dur":"1:02:38"},{"id":"vydiz04","series":"tr","title":"Tomb Raider (2013) #6 - A kiválasztot","url":"https://www.youtube.com/watch?v=sUdu-M-nJHo&list=PLTdsLsdrQ5bwDJntH0LqgYmXYMX8Jp_Eu&index=6","ep":6,"date":"2026-11-03","dur":"30:33"},{"id":"v6o3rm1","series":"tr","title":"Tomb Raider (2013) #5 - Sam vajon életbe van","url":"https://www.youtube.com/watch?v=gVglidm1kbI&list=PLTdsLsdrQ5bwDJntH0LqgYmXYMX8Jp_Eu&index=5","ep":5,"date":"2026-11-03","dur":"52:31"},{"id":"vr2uohp","series":"tr","title":"Tomb Raider (2013) #4 - A balszerencsés vihar és Himiko sírja","url":"https://www.youtube.com/watch?v=GsKtoizHKCU&list=PLTdsLsdrQ5bwDJntH0LqgYmXYMX8Jp_Eu&index=4","ep":4,"date":"2026-11-03","dur":"43:05"},{"id":"vdcs57m","series":"tr","title":"Tomb Raider (2013) #3 - A csomag és a rádiótorony","url":"https://www.youtube.com/watch?v=dh73CsAGEOg&list=PLTdsLsdrQ5bwDJntH0LqgYmXYMX8Jp_Eu&index=3","ep":3,"date":"2026-11-03","dur":"40:09"},{"id":"vu0iwhe","series":"s1evez3","title":"Portal végigjátszás 3. rész MAGYAR SZINKRON LIVE - Szóval Glados megakar minket ölni VÉGE","url":"https://www.youtube.com/watch?v=1IQ-__EQoS0","ep":3,"date":"2026-11-03","dur":"1:16:15"},{"id":"vio0jtn","series":"s1evez3","title":"Portal végigjátszás 2. rész MAGYAR SZINKRON LIVE - Menjünk tovább a tesztlaborban","url":"https://www.youtube.com/watch?v=plvHXxEjp4Y","ep":2,"date":"2026-11-03","dur":"2:10:45"},{"id":"vdadnj5","series":"s1evez3","title":"Portal végigjátszás 1. rész MAGYAR SZINKRON","url":"https://www.youtube.com/watch?v=OHLPRbfmu7A","ep":1,"date":"2026-11-03","dur":"19:10"},{"id":"vcj7qft","series":"sqxavp3","title":"Detroit: Become Human MAGYAR SZINKRON végigjátszás 8. rész - Az android érzőlény vagy szolga VÉGE","url":"https://www.youtube.com/watch?v=M_ZP0pJdUIQ","ep":8,"date":"2026-11-03","dur":"2:30:20"},{"id":"vqtl1js","series":"sqxavp3","title":"Detroit: Become Human MAGYAR SZINKRON végigjátszás 7. rész - A remény LIVE","url":"https://www.youtube.com/watch?v=r472fZgEvPo","ep":7,"label":"7","date":"2026-11-03","dur":"2:58:25"},{"id":"vr0isle","series":"sqxavp3","title":"Detroit: Become Human MAGYAR SZINKRON végigjátszás 6. rész - hogyan tovább LIVE","url":"https://www.youtube.com/watch?v=iTerxlvFEkw","ep":6,"date":"2026-11-03","dur":"2:08:30"},{"id":"vyhtptj","series":"sqxavp3","title":"Detroit: Become Human MAGYAR SZINKRON végigjátszás 5. rész - A deviánsok, a vonat, és Jericho","url":"https://www.youtube.com/watch?v=prhCZfYcet8","ep":5,"date":"2026-11-03","dur":"51:33"},{"id":"v57bmyl","series":"sqxavp3","title":"Detroit: Become Human MAGYAR SZINKRON végigjátszás 4. rész - Markus és Kara rossz sorsa","url":"https://www.youtube.com/watch?v=MgJwZcCxv_I","ep":4,"date":"2026-11-03","dur":"31:53"},{"id":"v00v0al","series":"sqxavp3","title":"Detroit: Become Human MAGYAR SZINKRON végigjátszás 3. rész - A festő, a nyomozás, és a menekülés","url":"https://www.youtube.com/watch?v=qPiAQrznDRo","ep":3,"date":"2026-11-03","dur":"52:08"},{"id":"vgz9i6f","series":"sqxavp3","title":"Detroit: Become Human MAGYAR SZINKRON végigjátszás 2. rész - Android világ","url":"https://www.youtube.com/watch?v=ZHaHFaCgiK0","ep":2,"date":"2026-11-03","dur":"38:59"},{"id":"v2stuvi","series":"sqxavp3","title":"Detroit: Become Human MAGYAR SZINKRON végigjátszás 1. rész - A túsz","url":"https://www.youtube.com/watch?v=CpEz9a6ItPc","ep":1,"date":"2025-03-03","dur":"20:33"},{"id":"vigsnrk","series":"pop","title":"Prince of Persia: The Two Thrones végigjátszás 1. rész - Visszatérés Babilonba LIVE","url":"https://www.youtube.com/watch?v=0csG-bMEElI&t=9097s","date":"2026-11-03","dur":"2:35:32","featured":true},{"id":"v1","series":"x","label":"Himnusz","title":"KrisszzHUNHDGaming himnusz by udio AI","date":"2024-09-14","url":"https://www.youtube.com/watch?v=LE-wkAbMJFI"},{"id":"v4","series":"tr","title":"Tomb Raider (2013) #2 - A társaink","url":"https://www.youtube.com/watch?v=2k_hpRxrugo&list=PLTdsLsdrQ5bwDJntH0LqgYmXYMX8Jp_Eu&index=2","ep":2,"date":"2026-10-03","dur":"36:05"},{"id":"v5","series":"tr","title":"Tomb Raider (2013) #1 - A hajótörés","url":"https://www.youtube.com/watch?v=e9B1oczX45Y&list=PLTdsLsdrQ5bwDJntH0LqgYmXYMX8Jp_Eu&index=1","ep":1,"date":"2026-11-02","dur":"36:05"}],"news":[{"id":"n2e5kxb","series":"","title":"Weboldal","text":"Lassan elérhető az új weboldalam, de még fejlesztés alatt áll","date":"2026-11-04"},{"id":"n1","series":"snf","title":"Új Steam Next Fest videók","text":"A fesztivál alatt a demókból válogatok. A videók a Steam Next Fest sorozatban gyűlnek.","date":"2026-10-20"},{"id":"n2","series":"pop","title":"Prince of Persia 10 Anniversary végigjátszás újból","text":"Újból kiviszem a POP trilógiát, először a Two Thrones, utána a Warrior Within és utána a Sand of Time-ot 10 év után, 10 éve vittem ki a Warrior Withint streambe és ezt ünneplem.","date":"2026-11-03"},{"id":"n3","series":"","title":"Kérdezz a következő videóban","text":"Írd a kérdésed bármelyik videó alá. A legtöbbször ismétlődők a GYIK-be is bekerülnek.","date":"2012-10-10"}],"faq":[{"id":"q1","q":"Milyen gépen játszol?","a":"AMD Ryzen 5 3600 processzor, 2*16 GB DDR4 memória, GIGABYTE RTX 3060 videókártya és Windows 11 Pro. A háttértár egy 256 GB-os SSD és egy 2 TB-os merevlemez + 1 TB SSD"},{"id":"q2","q":"Milyen játékokról szólnak a videók?","a":"Végigjátszások, horror, gameplayek"},{"id":"q3","q":"Mi az a Steam Next Fest?","a":"A Steam játékdemó-fesztiválja: a fejlesztők kipróbálható demókat tesznek közzé még a megjelenés előtt. A sorozatban ezekből mutatok be néhányat."},{"id":"q4","q":"Honnan tudom meg, ha új videó jelent meg?","a":"Iratkozz fel a YouTube-csatornán, és kapcsold be a csengő ikont. Az új részekről a Hírek rovatban is olvashatsz."},{"id":"q5","q":"Kérhetek játékot a csatornán?","a":"Írd a javaslatod bármelyik videó alá kommentben."},{"id":"qmc4tzy","q":"Mikor van új videó/stream?","a":"Amikor ráérek, valamikor gyakrabban, valamikor ritkábban"}]}</script><script id="app">(function () {
+  "use strict";
+
+  /* A tartalom (videók, hírek, GYIK, sorozatok) a #site-data blokkban van.
+     Aki menthet, az oldalon átírhatja, a mentés új verzióként közzéteszi az egész oldalt. */
+
+  var HEAD = "<title>KrisszzHUNHDGaming<\/title>\n<meta name=\"claude:viewport-fit-sides\" content=\"cover\">\n<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap\">\n";
+  var SHELL = "<div class=\"page\" id=\"top\">\n\n<div class=\"note\" id=\"note\" hidden><div class=\"wrap\">A MINTA jelölésű videók, hírek és kérdések csak példák.<\/div><\/div>\n<div class=\"bars\" aria-hidden=\"true\"><i><\/i><i><\/i><i><\/i><i><\/i><i><\/i><i><\/i><i><\/i><\/div>\n\n<header class=\"wrap top\">\n  <a class=\"mark\" href=\"#top\">KrisszzHUNHDGaming<\/a>\n  <nav class=\"nav\" aria-label=\"Fő menü\">\n    <a href=\"#videok\">Videók<\/a>\n    <a href=\"#hirek\">Hírek<\/a>\n    <a href=\"#gyik\">GYIK<\/a>\n  <\/nav>\n<\/header>\n\n<section class=\"hero wrap\" aria-labelledby=\"cim\">\n  <div class=\"hero-grid\">\n    <div>\n      <p class=\"kicker\">Gaming csatorna · PC-s játékok<\/p>\n      <h1 id=\"cim\" aria-label=\"KrisszzHUNHDGaming\"><span class=\"ln\">Krisszz<\/span><span class=\"ln\">HUNHD<\/span><span class=\"ln\">Gaming<\/span><\/h1>\n      <p class=\"lead\">Végigjátszások és játékkipróbák PC-n: a Prince of Persia trilógia, a Tomb Raider, a Steam Next Fest és a Batkrisz. Itt van minden videó, a sorozatok hírei és a gyakori kérdések.<\/p>\n      <div class=\"cta\">\n        <a class=\"btn btn-p\" data-channel href=\"#\" target=\"_blank\" rel=\"noopener\">Feliratkozás a YouTube-on<\/a>\n        <a class=\"btn\" href=\"#videok\">Videók megnézése<\/a>\n      <\/div>\n    <\/div>\n    <div>\n      <p class=\"label\">Kiemelt videó<\/p>\n      <div id=\"latest\"><\/div>\n    <\/div>\n  <\/div>\n<\/section>\n\n<section class=\"sched\" id=\"sched\" aria-labelledby=\"sorCim\">\n  <div class=\"wrap\">\n    <div class=\"sched-head\">\n      <h2 class=\"label\" id=\"sorCim\">Sorozatok<\/h2>\n      <p class=\"hint\">Válassz egy sorozatot, és csak a videóit látod.<\/p>\n    <\/div>\n    <div class=\"slots\" id=\"slots\"><\/div>\n    <div id=\"addSeries\"><\/div>\n  <\/div>\n<\/section>\n\n<section class=\"sec wrap\" id=\"videok\" aria-labelledby=\"videokCim\">\n  <div class=\"sec-head\">\n    <div>\n      <p class=\"kicker\">Videók<\/p>\n      <h2 id=\"videokCim\">Minden videó egy helyen<\/h2>\n    <\/div>\n    <div class=\"chips\" id=\"chips\" role=\"group\" aria-label=\"Szűrés sorozat szerint\"><\/div>\n  <\/div>\n  <div id=\"addVideo\"><\/div>\n  <div class=\"grid\" id=\"grid\"><\/div>\n  <p class=\"more\"><a class=\"btn\" data-channel href=\"#\" target=\"_blank\" rel=\"noopener\">Az összes videó a YouTube-on<\/a><\/p>\n<\/section>\n\n<section class=\"sec wrap\" id=\"hirek\" aria-labelledby=\"hirekCim\">\n  <div class=\"split\">\n    <div class=\"side\">\n      <p class=\"kicker\">Hírek<\/p>\n      <h2 id=\"hirekCim\">Hírek a sorozatokról<\/h2>\n      <p class=\"lead\">Itt olvashatsz az új sorozatrészekről, az új sorozatokról és a csatorna változásairól.<\/p>\n    <\/div>\n    <div>\n      <div id=\"addNews\"><\/div>\n      <ol class=\"news-list\" id=\"news\"><\/ol>\n    <\/div>\n  <\/div>\n<\/section>\n\n<section class=\"sec wrap\" id=\"gyik\" aria-labelledby=\"gyikCim\">\n  <div class=\"split\">\n    <div class=\"side\">\n      <p class=\"kicker\">GYIK<\/p>\n      <h2 id=\"gyikCim\">Gyakran ismételt kérdések<\/h2>\n      <p class=\"lead\">Nem találod, amit keresel? Írd meg kommentben a legújabb videó alá. A legtöbbször ismétlődő kérdések ide kerülnek.<\/p>\n    <\/div>\n    <div>\n      <div id=\"addFaq\"><\/div>\n      <div id=\"faq\"><\/div>\n    <\/div>\n  <\/div>\n<\/section>\n\n<footer class=\"foot\">\n  <div class=\"wrap foot-in\">\n    <p class=\"mono\">© <span id=\"year\">2026<\/span> KrisszzHUNHDGaming<span id=\"mintaFoot\"><\/span><\/p>\n    <p class=\"mono\"><a data-channel href=\"#\" target=\"_blank\" rel=\"noopener\">YouTube-csatorna<\/a> · <a href=\"#top\">Vissza a tetejére<\/a><\/p>\n  <\/div>\n<\/footer>\n\n<\/div>\n<div id=\"editbar\"><\/div>\n";
+  var DOC_START = "<!doctype html><html><head><meta charset=utf8><meta name=viewport content=\"width=device-width,initial-scale=1,viewport-fit=cover\"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}<\/style><\/head><body>\n";
+  var DOC_END = "\n</body></html>";
+
+  var MONTHS = ["január", "február", "március", "április", "május", "június", "július", "augusztus", "szeptember", "október", "november", "december"];
+
+  function $(id) { return document.getElementById(id); }
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return "&#" + c.charCodeAt(0) + ";"; }); }
+  function pad(n) { return n < 10 ? "0" + n : String(n); }
+  function fmtDate(iso) {
+    var p = String(iso).split("-");
+    return p.length === 3 && MONTHS[+p[1] - 1] ? p[0] + ". " + MONTHS[+p[1] - 1] + " " + (+p[2]) + "." : String(iso);
+  }
+  function daysAgo(iso) { return (Date.now() - Date.parse(iso + "T00:00:00Z")) / 864e5; }
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
+  function uid(p) { return p + Math.random().toString(36).slice(2, 8); }
+  function today() { var d = new Date(); return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
+  function put(k, v) { try { if (v === null) { sessionStorage.removeItem(k); } else { sessionStorage.setItem(k, v); } } catch (e) { /* nincs tároló */ } }
+  function get(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }
+  function safeUrl(u, fallback) { return /^https?:\/\/\S+$/i.test(u || "") ? u : fallback; }
+
+  /* ===== Állapot ===== */
+
+  var SAVED = { v: 1, channelUrl: "https://www.youtube.com/", series: [], videos: [], news: [], faq: [] };
+  try { SAVED = JSON.parse($("site-data").textContent); } catch (e) { /* üres alapállapot */ }
+  function normalize(st) {
+    ["series", "videos", "news", "faq"].forEach(function (k) { if (!Array.isArray(st[k])) { st[k] = []; } });
+    st.series.forEach(function (s) { s.c = +s.c >= 1 && +s.c <= 8 ? +s.c : 1; });
+    return st;
+  }
+  normalize(SAVED);
+  var S = clone(SAVED);
+  var X = { id: "x", name: "Csatorna", short: "Csatorna", kind: "", c: 0 };
+
+  var current = "all", editing = false, canEdit = false, ns = null;
+  var dirty = 0, saving = false, msg = "", modal = null, lastFocus = null, lastSel = "";
+
+  function ser(id) {
+    for (var i = 0; i < S.series.length; i++) { if (S.series[i].id === id) { return S.series[i]; } }
+    return X;
+  }
+  function vs(v) { return ser(v.series).id; }
+  function count(id) { return S.videos.filter(function (v) { return vs(v) === id; }).length; }
+  function hasSamples() { return S.videos.concat(S.news, S.faq).some(function (x) { return x.sample; }); }
+  function listOf(kind) { return kind === "video" ? S.videos : kind === "news" ? S.news : kind === "faq" ? S.faq : S.series; }
+  function idx(kind, id) {
+    var l = listOf(kind);
+    for (var i = 0; i < l.length; i++) { if (l[i].id === id) { return i; } }
+    return -1;
+  }
+  function find(kind, id) { var i = idx(kind, id); return i < 0 ? null : listOf(kind)[i]; }
+
+  // Dátum szerint a legújabb elöl, a dátum nélküliek a végén, eredeti sorrendben
+  function byDate(list) {
+    return list.map(function (it, i) { return { it: it, i: i }; }).sort(function (a, b) {
+      var da = a.it.date || "", db = b.it.date || "";
+      if (da && db) { return da < db ? 1 : da > db ? -1 : a.i - b.i; }
+      if (da) { return -1; }
+      if (db) { return 1; }
+      return a.i - b.i;
+    }).map(function (x) { return x.it; });
+  }
+
+  /* ===== Megjelenítés ===== */
+
+  function edBar(kind, id, order) {
+    if (!editing) { return ""; }
+    var a = ' data-kind="' + kind + '" data-id="' + esc(id) + '"';
+    return '<div class="edbar">' +
+      '<button type="button" class="mini" data-act="edit"' + a + ">Szerkesztés</button>" +
+      (order ? '<button type="button" class="mini" data-act="up"' + a + ' aria-label="Feljebb">↑</button><button type="button" class="mini" data-act="down"' + a + ' aria-label="Lejjebb">↓</button>' : "") +
+      '<button type="button" class="mini del" data-act="del"' + a + ">Törlés</button></div>";
+  }
+  function addBtn(kind, text) {
+    return editing ? '<button type="button" class="addbtn" data-act="add" data-kind="' + kind + '">+ ' + text + "</button>" : "";
+  }
+
+  function card(v, big) {
+    var s = ser(v.series);
+    var href = safeUrl(v.url, S.channelUrl);
+    var part = v.ep ? v.ep + ". rész" : (v.label || "");
+    var label = [v.title, s.short, part, v.date ? fmtDate(v.date) : "", v.dur, v.sample ? "minta" : ""].filter(Boolean).join(", ");
+    var ep = v.ep
+      ? '<span class="ep"><small>Rész</small>' + pad(+v.ep) + "</span>"
+      : '<span class="ep ep-t"><small>Videó</small>' + esc(v.label || s.short) + "</span>";
+    var badge = v.sample ? '<span class="tagm">Minta</span>' : (v.date && daysAgo(v.date) <= 7 ? '<span class="new">Új</span>' : "");
+    return '<a class="vid sc' + s.c + (big ? " vid-big" : "") + '" href="' + esc(href) + '" target="_blank" rel="noopener" aria-label="' + esc(label) + '">' +
+      '<span class="thumb pc' + s.c + '" aria-hidden="true">' + badge + '<span class="play"></span>' + ep +
+        (v.dur ? '<span class="dur">' + esc(v.dur) + "</span>" : "") + "</span>" +
+      '<span class="vmeta"><span class="vtag"><span class="sw"></span>' + esc(s.short) + "</span>" +
+        '<span class="vtitle">' + esc(v.title) + "</span>" +
+        (v.date ? '<span class="vdate">' + fmtDate(v.date) + "</span>" : "") + "</span></a>";
+  }
+
+  function renderTop() {
+    var sample = hasSamples();
+    $("note").hidden = !sample;
+    $("mintaFoot").textContent = sample ? " · mintaoldal" : "";
+    $("year").textContent = new Date().getFullYear();
+    $("top").classList.toggle("editing", editing);
+    var links = document.querySelectorAll("[data-channel]");
+    for (var i = 0; i < links.length; i++) { links[i].setAttribute("href", safeUrl(S.channelUrl, "https://www.youtube.com/")); }
+  }
+
+  function renderLatest() {
+    var f = S.videos.filter(function (v) { return v.featured; })[0] || byDate(S.videos)[0];
+    $("latest").innerHTML = f ? card(f, true) : '<p class="empty">Még nincs videó.</p>';
+  }
+
+  function renderBand() {
+    $("sched").hidden = !S.series.length && !editing;
+    $("slots").innerHTML = S.series.map(function (s) {
+      return '<div class="si"><button type="button" class="slot sc' + s.c + '" data-act="filter" data-id="' + esc(s.id) + '">' +
+        '<span class="cnt">' + count(s.id) + " videó</span>" +
+        '<span class="sname-big">' + esc(s.short) + "</span>" +
+        (s.kind ? '<span class="sub">' + esc(s.kind) + "</span>" : "") + "</button>" +
+        edBar("series", s.id, true) + "</div>";
+    }).join("");
+    $("addSeries").innerHTML = addBtn("series", "Új sorozat");
+  }
+
+  function renderChips() {
+    var items = [{ id: "all", name: "Mind", n: S.videos.length, c: -1 }];
+    S.series.forEach(function (s) { items.push({ id: s.id, name: s.short, n: count(s.id), c: s.c }); });
+    if (count("x")) { items.push({ id: "x", name: "Csatorna", n: count("x"), c: 0 }); }
+    if (!items.some(function (i) { return i.id === current; })) { current = "all"; }
+    $("chips").innerHTML = items.map(function (c) {
+      return '<button type="button" class="chip' + (c.c >= 0 ? " sc" + c.c : "") + '" data-act="filter" data-id="' + esc(c.id) + '" aria-pressed="' + (c.id === current) + '">' +
+        (c.c >= 0 ? '<span class="sw"></span>' : "") + esc(c.name) + ' <span class="n">' + c.n + "</span></button>";
+    }).join("");
+  }
+
+  function renderGrid() {
+    var list = byDate(S.videos).filter(function (v) { return current === "all" || vs(v) === current; });
+    $("grid").innerHTML = list.length
+      ? list.map(function (v) { return '<div class="gi">' + card(v, false) + edBar("video", v.id) + "</div>"; }).join("")
+      : '<p class="empty">' + (S.videos.length ? "Ehhez a sorozathoz még nincs feltöltött videó." : "Még nincs videó.") + "</p>";
+    $("addVideo").innerHTML = addBtn("video", "Új videó");
+  }
+
+  function renderNews() {
+    var list = byDate(S.news);
+    $("news").innerHTML = list.length ? list.map(function (n) {
+      var s = n.series ? ser(n.series) : null;
+      if (s === X) { s = null; }
+      var mark = '<span class="tagm">Minta</span>';
+      return '<li class="news-item"><p class="ndate">' + (n.date ? fmtDate(n.date) : (n.sample ? mark : "")) + "</p><div>" +
+        '<p class="ntag' + (s ? " sc" + s.c : "") + '">' + (s ? '<span class="sw"></span>' + esc(s.short) : "Csatorna") + (n.date && n.sample ? " " + mark : "") + "</p>" +
+        "<h3>" + esc(n.title) + '</h3><p class="nt">' + esc(n.text) + "</p>" + edBar("news", n.id) + "</div></li>";
+    }).join("") : '<li class="empty">Még nincs hír.</li>';
+    $("addNews").innerHTML = addBtn("news", "Új hír");
+  }
+
+  function renderFaq() {
+    $("faq").innerHTML = S.faq.length ? S.faq.map(function (f, i) {
+      return '<div class="fi"><details class="faq"' + (i === 0 ? " open" : "") + "><summary><span>" + esc(f.q) +
+        (f.sample ? ' <span class="tagm">Minta</span>' : "") + "</span></summary><p>" + esc(f.a) + "</p></details>" +
+        edBar("faq", f.id, true) + "</div>";
+    }).join("") : '<p class="empty">Még nincs kérdés.</p>';
+    $("addFaq").innerHTML = addBtn("faq", "Új kérdés");
+  }
+
+  function renderBar() {
+    var el = $("editbar");
+    if (!canEdit) { el.innerHTML = ""; return; }
+    if (!editing) {
+      el.innerHTML = '<button type="button" class="btn btn-p fab" data-act="start">Szerkesztés</button>';
+      return;
+    }
+    var text = msg || (dirty ? dirty + " mentetlen módosítás" : "Szerkesztő mód. Nincs mentetlen módosítás.");
+    el.innerHTML = '<div class="edit-bar" role="region" aria-label="Szerkesztés">' +
+      '<p class="bar-msg" role="status">' + esc(text) + "</p>" +
+      '<div class="bar-btns">' +
+        '<button type="button" class="btn" data-act="settings">Csatorna linkje</button>' +
+        (hasSamples() ? '<button type="button" class="btn" data-act="clear-samples">Minta törlése</button>' : "") +
+        '<button type="button" class="btn btn-p" data-act="save"' + (dirty && !saving ? "" : " disabled") + ">Mentés</button>" +
+        '<button type="button" class="btn" data-act="stop"' + (saving ? " disabled" : "") + ">" + (dirty ? "Elvetés" : "Kilépés") + "</button>" +
+      "</div></div>";
+  }
+
+  function render() {
+    renderTop(); renderLatest(); renderBand(); renderChips(); renderGrid(); renderNews(); renderFaq(); renderBar();
+  }
+
+  function setFilter(id) {
+    current = id;
+    var kids = $("chips").children;
+    for (var i = 0; i < kids.length; i++) { kids[i].setAttribute("aria-pressed", String(kids[i].getAttribute("data-id") === current)); }
+    renderGrid();
+  }
+
+  /* ===== Módosítások ===== */
+
+  function stash() { put("ks_pending", JSON.stringify(S)); }
+  function touch() { dirty++; msg = ""; stash(); render(); }
+
+  function commit(kind, it, isNew) {
+    var l = listOf(kind);
+    if (isNew) {
+      if (kind === "faq" || kind === "series") { l.push(it); } else { l.unshift(it); }
+    } else {
+      var i = idx(kind, it.id);
+      if (i >= 0) { l[i] = it; } else { l.push(it); }
+    }
+    touch();
+  }
+
+  function removeItem(kind, id) {
+    var i = idx(kind, id);
+    if (i < 0) { return; }
+    listOf(kind).splice(i, 1);
+    if (kind === "series") {
+      S.videos.forEach(function (v) { if (v.series === id) { v.series = "x"; } });
+      S.news.forEach(function (n) { if (n.series === id) { n.series = ""; } });
+    }
+    touch();
+  }
+
+  function moveItem(kind, id, d) {
+    var l = listOf(kind), i = idx(kind, id), j = i + d;
+    if (i < 0 || j < 0 || j >= l.length) { return; }
+    var t = l[i]; l[i] = l[j]; l[j] = t;
+    touch();
+  }
+
+  function clearSamples() {
+    S.videos = S.videos.filter(function (x) { return !x.sample; });
+    S.news = S.news.filter(function (x) { return !x.sample; });
+    S.faq = S.faq.filter(function (x) { return !x.sample; });
+    touch();
+  }
+
+  function discard() {
+    S = clone(SAVED);
+    dirty = 0; editing = false; msg = "";
+    put("ks_pending", null); put("ks_edit", null);
+    render();
+  }
+
+  // Kétlépéses megerősítés: az első kattintás megjelöli a gombot, a második végrehajt
+  function arm(b, fn) {
+    if (b.getAttribute("data-armed") === "1") { fn(); return; }
+    var old = b.textContent;
+    b.setAttribute("data-armed", "1");
+    b.textContent = "Biztosan?";
+    setTimeout(function () {
+      if (b.isConnected) { b.removeAttribute("data-armed"); b.textContent = old; }
+    }, 3000);
+  }
+
+  /* ===== Űrlapok ===== */
+
+  function fieldHtml(f) {
+    var id = "f_" + f.name, v = f.value === undefined || f.value === null ? "" : String(f.value);
+    var help = f.help ? '<p class="fh" id="' + id + '_h">' + esc(f.help) + "</p>" : "";
+    var desc = f.help ? ' aria-describedby="' + id + '_h"' : "";
+    var ph = f.placeholder ? ' placeholder="' + esc(f.placeholder) + '"' : "";
+    var ml = f.max ? ' maxlength="' + f.max + '"' : "";
+    if (f.type === "checkbox") {
+      return '<div class="fld"><label class="ck"><input type="checkbox" id="' + id + '" name="' + f.name + '"' + (f.value ? " checked" : "") + desc + "> " + esc(f.label) + "</label>" + help + "</div>";
+    }
+    if (f.type === "colors") {
+      var sw = "";
+      for (var n = 1; n <= 8; n++) {
+        sw += '<label class="cp sc' + n + '"><input type="radio" name="' + f.name + '" value="' + n + '"' + (String(n) === v ? " checked" : "") + ' aria-label="Szín ' + n + '"><span></span></label>';
+      }
+      return '<fieldset class="fld"><legend class="fl">' + esc(f.label) + '</legend><div class="cps">' + sw + "</div></fieldset>";
+    }
+    var label = '<label class="fl" for="' + id + '">' + esc(f.label) + (f.required ? ' <span class="req" aria-hidden="true">*</span>' : "") + "</label>";
+    var ctl;
+    if (f.type === "textarea") {
+      ctl = '<textarea id="' + id + '" name="' + f.name + '" rows="' + (f.rows || 4) + '"' + ml + ph + desc + ">" + esc(v) + "</textarea>";
+    } else if (f.type === "select") {
+      ctl = '<select id="' + id + '" name="' + f.name + '"' + desc + ">" + f.options.map(function (o) {
+        return '<option value="' + esc(o[0]) + '"' + (String(o[0]) === v ? " selected" : "") + ">" + esc(o[1]) + "</option>";
+      }).join("") + "</select>";
+    } else {
+      ctl = '<input id="' + id + '" name="' + f.name + '" type="' + f.type + '" value="' + esc(v) + '"' + ml + ph + desc +
+        (f.type === "number" ? ' inputmode="numeric" min="' + (f.min || 0) + '"' : "") + ">";
+    }
+    return '<div class="fld">' + label + ctl + help + "</div>";
+  }
+
+  function readForm(form, fields) {
+    var out = {};
+    for (var i = 0; i < fields.length; i++) {
+      var f = fields[i], el = form.elements[f.name];
+      if (f.type === "checkbox") { out[f.name] = !!el.checked; continue; }
+      var val = String(el.value || "").trim();
+      if (f.required && !val) { return { error: "A(z) „" + f.label + "” megadása kötelező.", focus: el }; }
+      if (val && f.type === "url" && !/^https?:\/\/\S+$/i.test(val)) { return { error: "A link http:// vagy https:// kezdetű legyen.", focus: el }; }
+      if (val && f.pattern && !f.pattern.test(val)) { return { error: f.patternMsg, focus: el }; }
+      out[f.name] = val;
+    }
+    return { values: out };
+  }
+
+  // A fókusz visszatérési pontja: a megnyomott gomb, vagy ha az újrarajzolás közben megszűnt, az azonos gomb
+  function focusSelector(el) {
+    if (!el || !el.getAttribute) { return ""; }
+    var s = "";
+    ["data-act", "data-kind", "data-id"].forEach(function (a) {
+      var v = el.getAttribute(a);
+      if (v) { s += "[" + a + '="' + String(v).replace(/["\\]/g, "") + '"]'; }
+    });
+    return s;
+  }
+
+  function openForm(cfg) {
+    closeForm();
+    lastFocus = document.activeElement;
+    lastSel = focusSelector(lastFocus);
+    var m = document.createElement("div");
+    m.className = "modal";
+    m.innerHTML = '<div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlgT"><form id="dlgForm" novalidate>' +
+      '<h2 class="dlg-t" id="dlgT">' + esc(cfg.title) + "</h2>" + cfg.fields.map(fieldHtml).join("") +
+      '<p class="err" id="dlgErr" role="alert"></p>' +
+      '<div class="dlg-btns"><button type="submit" class="btn btn-p">Kész</button><button type="button" class="btn" data-close="1">Mégse</button></div>' +
+      "</form></div>";
+    document.body.appendChild(m);
+    modal = m;
+    var form = m.querySelector("form");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var r = readForm(form, cfg.fields);
+      if (r.error) {
+        $("dlgErr").textContent = r.error;
+        if (r.focus && r.focus.focus) { r.focus.focus(); }
+        return;
+      }
+      cfg.onSave(r.values);
+      closeForm();
+    });
+    m.addEventListener("click", function (e) {
+      if (e.target === m || e.target.closest("[data-close]")) { closeForm(); }
+    });
+    var first = form.querySelector("input,select,textarea");
+    if (first) { first.focus(); }
+  }
+
+  function closeForm() {
+    if (!modal) { return; }
+    modal.remove();
+    modal = null;
+    var back = lastFocus && lastFocus.isConnected ? lastFocus : (lastSel ? document.querySelector(lastSel) : null);
+    if (!back) { back = document.querySelector("#editbar button:not([disabled])"); }
+    if (back && back.focus) { back.focus(); }
+    lastFocus = null; lastSel = "";
+  }
+
+  function onKey(e) {
+    if (!modal) { return; }
+    if (e.key === "Escape") { e.preventDefault(); closeForm(); return; }
+    if (e.key !== "Tab") { return; }
+    var f = modal.querySelectorAll('input:not([type="radio"]),input[type="radio"]:checked,select,textarea,button');
+    if (!f.length) { return; }
+    var first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+
+  // A sorozat legnagyobb részszáma + 1 (szövegként); ha a sorozatnak még nincs számozott videója, üres
+  function nextEp(sid) {
+    var m = 0;
+    S.videos.forEach(function (v) { if (v.series === sid && +v.ep > m) { m = +v.ep; } });
+    return m > 0 ? String(m + 1) : "";
+  }
+
+  var DATE_RX = /^\d{4}-\d{2}-\d{2}$/;
+  var DATE_MSG = "A dátum így nézzen ki: 2026-11-03.";
+
+  function openItem(kind, id) {
+    var cur = id ? find(kind, id) : null, isNew = !cur;
+    cur = cur || {};
+
+    if (kind === "video") {
+      var opts = S.series.map(function (s) { return [s.id, s.short]; });
+      opts.push(["x", "Csatorna (nem sorozat)"]);
+      // Új videónál az éppen szűrt sorozat az alapértelmezett, a rész száma pedig a következő szám
+      var pre = cur.series || (current !== "all" && (current === "x" || ser(current) !== X) ? current : (S.series[0] ? S.series[0].id : "x"));
+      openForm({
+        title: isNew ? "Új videó" : "Videó szerkesztése",
+        fields: [
+          { name: "title", label: "Videó címe", type: "text", required: true, max: 140, value: cur.title },
+          { name: "url", label: "Videó linkje a YouTube-on", type: "url", value: cur.url, placeholder: "https://www.youtube.com/watch?v=…", help: "Ha üresen hagyod, a csatorna oldalára mutat." },
+          { name: "series", label: "Sorozat", type: "select", options: opts, value: pre },
+          { name: "ep", label: "Rész száma", type: "number", min: 1, value: isNew ? nextEp(pre) : cur.ep, pattern: /^\d{1,4}$/, patternMsg: "A rész száma egész szám legyen.", help: "Ha megadod, ez látszik a bélyegképen. Új videónál a sorozat következő száma van beírva." },
+          { name: "label", label: "Bélyegkép felirata", type: "text", max: 14, value: cur.label, help: "Rész száma nélkül ez a felirat látszik, például Himnusz." },
+          { name: "date", label: "Feltöltés dátuma", type: "date", value: isNew ? today() : cur.date, pattern: DATE_RX, patternMsg: DATE_MSG },
+          { name: "dur", label: "Hossz", type: "text", max: 8, value: cur.dur, placeholder: "14:22", pattern: /^\d{1,2}:\d{2}(:\d{2})?$/, patternMsg: "A hossz így nézzen ki: 14:22 vagy 1:02:15." },
+          { name: "featured", label: "Ez legyen a kiemelt videó a nyitó részen", type: "checkbox", value: cur.featured }
+        ],
+        onSave: function (v) {
+          var it = { id: cur.id || uid("v"), series: v.series || "x", title: v.title };
+          if (v.url) { it.url = v.url; }
+          if (v.ep) { it.ep = parseInt(v.ep, 10); }
+          if (v.label) { it.label = v.label; }
+          if (v.date) { it.date = v.date; }
+          if (v.dur) { it.dur = v.dur; }
+          if (v.featured) {
+            it.featured = true;
+            S.videos.forEach(function (o) { if (o.id !== it.id) { delete o.featured; } });
+          }
+          commit("video", it, isNew);
+        }
+      });
+      if (isNew) {
+        var selEl = $("f_series"), epEl = $("f_ep"), auto = epEl.value;
+        selEl.addEventListener("change", function () {
+          if (epEl.value === auto) { auto = nextEp(selEl.value); epEl.value = auto; }
+        });
+      }
+    } else if (kind === "news") {
+      var so = [["", "Általános csatornahír"]].concat(S.series.map(function (s) { return [s.id, s.short]; }));
+      openForm({
+        title: isNew ? "Új hír" : "Hír szerkesztése",
+        fields: [
+          { name: "title", label: "A hír címe", type: "text", required: true, max: 120, value: cur.title },
+          { name: "text", label: "Szöveg", type: "textarea", required: true, rows: 5, max: 600, value: cur.text },
+          { name: "series", label: "Melyik sorozathoz tartozik?", type: "select", options: so, value: cur.series || "" },
+          { name: "date", label: "Dátum", type: "date", value: isNew ? today() : cur.date, pattern: DATE_RX, patternMsg: DATE_MSG }
+        ],
+        onSave: function (v) {
+          var it = { id: cur.id || uid("n"), series: v.series, title: v.title, text: v.text };
+          if (v.date) { it.date = v.date; }
+          commit("news", it, isNew);
+        }
+      });
+    } else if (kind === "faq") {
+      openForm({
+        title: isNew ? "Új kérdés" : "Kérdés szerkesztése",
+        fields: [
+          { name: "q", label: "Kérdés", type: "text", required: true, max: 160, value: cur.q },
+          { name: "a", label: "Válasz", type: "textarea", required: true, rows: 6, max: 1200, value: cur.a }
+        ],
+        onSave: function (v) { commit("faq", { id: cur.id || uid("q"), q: v.q, a: v.a }, isNew); }
+      });
+    } else if (kind === "series") {
+      var used = S.series.map(function (s) { return s.c; }), free = 1;
+      for (var n = 1; n <= 8; n++) { if (used.indexOf(n) < 0) { free = n; break; } }
+      openForm({
+        title: isNew ? "Új sorozat" : "Sorozat szerkesztése",
+        fields: [
+          { name: "name", label: "A sorozat teljes neve", type: "text", required: true, max: 80, value: cur.name },
+          { name: "short", label: "Rövid név", type: "text", max: 24, value: cur.short, help: "Ez látszik a gombokon és a kártyákon. Ha üresen hagyod, a teljes név látszik." },
+          { name: "kind", label: "Alcím", type: "text", max: 40, value: cur.kind, help: "A sorozatok sávjában a név alatt látszik, például Végigjátszás." },
+          { name: "c", label: "Szín", type: "colors", value: cur.c || free }
+        ],
+        onSave: function (v) {
+          commit("series", { id: cur.id || uid("s"), name: v.name, short: v.short || v.name, kind: v.kind, c: +v.c || free }, isNew);
+        }
+      });
+    }
+  }
+
+  function openSettings() {
+    openForm({
+      title: "Csatorna linkje",
+      fields: [
+        { name: "channelUrl", label: "A YouTube-csatorna címe", type: "url", required: true, value: S.channelUrl, placeholder: "https://www.youtube.com/@csatornaneve", help: "A Feliratkozás és az Összes videó gomb ide mutat, és minden videó, aminek nincs saját linkje." }
+      ],
+      onSave: function (v) { S.channelUrl = v.channelUrl; touch(); }
+    });
+  }
+
+  /* ===== Mentés: az oldal új verzióként közzéteszi önmagát ===== */
+
+  function buildDoc() {
+    var data = JSON.stringify(S).replace(/</g, "\\u003c").replace(/\u2028/g, "\\u2028").replace(/\u2029/g, "\\u2029");
+    // Pontosan az a szerkezet, amit az Artifact eszköz is előállít: a váz, a fej, a stílus, az adat, a program
+    return DOC_START + HEAD +
+      '<style id="css">' + $("css").textContent + "</style>" +
+      '<div id="root"></div>' +
+      '<script type="application/json" id="site-data">' + data + "<\/script>" +
+      '<script id="app">' + $("app").textContent + "<\/script>\n" + DOC_END;
+  }
+
+  function errText(e) {
+    var c = e && e.code;
+    if (c === "conflict") { return "Közben új verzió készült az oldalból, ezért az oldal újratölt. A módosításaid megmaradnak, és az újratöltés után visszakerülnek."; }
+    if (c === "not_writer" || c === "not_granted" || c === "consent_required" || c === "not_declared") { return "Ehhez az oldalhoz nincs szerkesztési jogosultságod."; }
+    if (c === "rate_limited") { return "Túl gyakran mentesz. Várj egy kicsit, aztán próbáld újra."; }
+    if (c === "too_large") { return "Az oldal mérete túl nagy a mentéshez."; }
+    if (c === "capability_disabled" || c === "capability_removed") { return "A mentés ebben a nézetben nem érhető el."; }
+    return "A mentés most nem sikerült. Próbáld újra.";
+  }
+
+  // Közzététel előtt: a kész dokumentumot visszaolvassuk, és csak akkor megy ki, ha önmagával egyezik
+  function verifyDoc(doc) {
+    if (doc.length > 8e6) { return "too_large"; }
+    if (doc.indexOf("<!doctype html>") !== 0) { return "start"; }
+    var p = new DOMParser().parseFromString(doc, "text/html");
+    var d = p.getElementById("site-data"), a = p.getElementById("app"), c = p.getElementById("css"), r = p.getElementById("root");
+    if (!d || !a || !c || !r || r.firstChild) { return "parts"; }
+    if (a.textContent !== $("app").textContent || c.textContent !== $("css").textContent) { return "code"; }
+    try { if (JSON.stringify(JSON.parse(d.textContent)) !== JSON.stringify(S)) { return "data"; } } catch (e) { return "data"; }
+    return "";
+  }
+
+  function save() {
+    if (!ns || saving || !dirty) { return; }
+    var doc, bad;
+    try { doc = buildDoc(); bad = verifyDoc(doc); } catch (e) { bad = "build"; }
+    if (bad) {
+      msg = bad === "too_large" ? errText({ code: "too_large" }) : "A mentés előkészítése nem sikerült, ezért nem történt mentés. A módosításaid megmaradtak az oldalon.";
+      renderBar();
+      return;
+    }
+    saving = true; msg = "Mentés…";
+    put("ks_edit", "1"); stash();
+    renderBar();
+    ns.publish(doc).then(function () {
+      put("ks_pending", null); put("ks_msg", "Mentve.");
+      SAVED = clone(S); dirty = 0; saving = false; msg = "Mentve.";
+      render();
+    }, function (e) {
+      saving = false; msg = errText(e);
+      if (e && (e.code === "not_writer" || e.code === "not_granted" || e.code === "consent_required" || e.code === "not_declared")) { canEdit = false; editing = false; }
+      render();
+    });
+  }
+
+  /* ===== Indulás ===== */
+
+  function onClick(e) {
+    var b = e.target.closest("[data-act]");
+    if (!b) { return; }
+    var act = b.getAttribute("data-act"), kind = b.getAttribute("data-kind"), id = b.getAttribute("data-id");
+    if (act === "filter") {
+      setFilter(id);
+      if (b.classList.contains("slot")) {
+        var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        $("videok").scrollIntoView({ behavior: calm ? "auto" : "smooth", block: "start" });
+      }
+    } else if (act === "start") { editing = true; put("ks_edit", "1"); render(); }
+    else if (act === "stop") {
+      if (dirty) { arm(b, discard); } else { editing = false; msg = ""; put("ks_edit", null); render(); }
+    }
+    else if (act === "add") { openItem(kind, null); }
+    else if (act === "edit") { openItem(kind, id); }
+    else if (act === "del") { arm(b, function () { removeItem(kind, id); }); }
+    else if (act === "up" || act === "down") { moveItem(kind, id, act === "up" ? -1 : 1); }
+    else if (act === "settings") { openSettings(); }
+    else if (act === "clear-samples") { arm(b, clearSamples); }
+    else if (act === "save") { save(); }
+  }
+
+  function initCaps() {
+    var c = window.claude;
+    if (!c || typeof c.use !== "function") { return; }
+    Promise.all([c.use("artifact"), c.use("user")]).then(function (r) {
+      ns = r[0];
+      if (!ns || !r[1]) { return false; }
+      return Promise.resolve(r[1].canEdit()).catch(function () { return false; });
+    }).then(function (ok) {
+      if (!ok) { return; }
+      canEdit = true;
+      var p = get("ks_pending");
+      if (p) {
+        try {
+          var ps = normalize(JSON.parse(p));
+          if (JSON.stringify(ps) !== JSON.stringify(SAVED)) {
+            S = ps; dirty = 1; editing = true;
+            msg = "A mentetlen módosításaid visszakerültek az oldalra. Nézd át, és mentsd el őket.";
+          } else { put("ks_pending", null); }
+        } catch (e) { put("ks_pending", null); }
+      }
+      var done = get("ks_msg");
+      if (done) { put("ks_msg", null); if (!msg) { msg = done; } }
+      if (get("ks_edit") === "1") { editing = true; }
+      render();
+    }).catch(function () { /* olvasó nézet */ });
+  }
+
+  document.documentElement.setAttribute("lang", "hu");
+  $("root").innerHTML = SHELL;
+  $("root").addEventListener("click", onClick);
+  document.addEventListener("keydown", onKey);
+  render();
+  initCaps();
+})();
+</script>
+
+</body></html>
